@@ -11,8 +11,10 @@
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "ajv": "^6.5.2",
     "express": "^4.16.3",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue2-hammer": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
