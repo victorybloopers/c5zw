@@ -1,26 +1,10 @@
 <template>
   <div>
-    <div v-hammer:pan="changeColor"
+    <div id="block"
+         v-hammer:pan="updateCoordinates"
+         v-hammer:press="findRelativeCoordinates"
          :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">PAN</div>
-    <div v-hammer:swipe.left="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">SWIPE LEFT</div>
-    <div v-hammer:swipe.right="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">SWIPE RIGHT</div>
-    <div v-hammer:tap="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">TAP</div>
-    <div v-hammer:rotate="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">ROTATE</div>
-    <div v-hammer:pinch="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">PINCH</div>
-    <div v-hammer:press="changeColor"
-         :class="{ 'building-block': true }"
-         :style="{ backgroundColor: bgColor }">PRESS</div>
+         :style="{ backgroundColor: bgColor, left: left + 'px', top: top + 'px' }">PAN</div>
   </div>
 </template>
 
@@ -29,13 +13,24 @@ export default {
   name: 'BuildingBlock',
   data () {
     return {
-      bgColor: 'blue'
+      bgColor: 'blue',
+      left: 0,
+      top: 0
     }
   },
   methods: {
     changeColor: function(e) {
       console.log(e)
       this.bgColor = 'red'
+    },
+    updateCoordinates: function(e) {
+      var rect = e.target.getBoundingClientRect()
+      this.left = e.center.x - 100
+      this.top = e.center.y - 100
+    },
+    findRelativeCoordinates: function(e) {
+      var rect = e.target.getBoundingClientRect()
+      console.log(e.center.x - rect.left)
     }
   }
 }
@@ -44,6 +39,9 @@ export default {
 <style scoped>
   .building-block {
     color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 200px;
     height: 200px;
     margin-bottom: 0.4em;
