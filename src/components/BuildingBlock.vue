@@ -6,12 +6,13 @@
        v-hammer:pancancel="endDrag"
        ref="someBlock"
        :class="{ 'building-block': true }"
-       :style="{ backgroundColor: 'red',
+       :style="{ backgroundColor: bgColor,
                  left: posX + 'px',
                  top: posY + 'px',
                  width: width + 'px',
                  height: height + 'px'}">
     {{ isDragging }} {{ mainWidth }} {{ mainHeight }}
+    <button>Sample</button>
     <div class="square" style="top: 0; left: 0"></div>
     <div class="square" style="top: 0; right: 0"></div>
     <div class="square" style="left: 0; bottom: 0"></div>
@@ -25,7 +26,7 @@ export default {
   name: 'BuildingBlock',
   data () {
     return {
-      bgColor: 'blue',
+      bgColor: 'red',
       isDragging: false,
       lastPosX: 0,
       lastPosY: 0,
@@ -43,13 +44,13 @@ export default {
   },
   methods: {
     findWidth: function() {
-      if ((this.width - (-this.posX)) < this.mainWidth) {
-        this.posX = -(this.width - this.mainWidth)
+      if (this.posX + this.width < window.innerWidth) {
+        this.posX = window.innerWidth - this.width
       }
     },
     findHeight: function() {
-      if ((this.height - (-this.posY)) < this.mainHeight) {
-        this.posY = -(this.height - this.mainHeight)
+      if (this.posY + this.height < window.innerHeight) {
+        this.posY = window.innerHeight - this.height
       }
     },
     handlePress: function() {
