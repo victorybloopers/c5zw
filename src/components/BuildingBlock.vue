@@ -5,6 +5,7 @@
        v-hammer:panend="endDrag"
        v-hammer:pancancel="endDrag"
        ref="someBlock"
+       id="world"
        :class="{ 'building-block': true }"
        :style="{ backgroundColor: bgColor,
                  left: posX + 'px',
@@ -13,7 +14,7 @@
                  height: height + 'px'}">
     {{ isDragging }} {{ mainWidth }} {{ mainHeight }}
     <button>Sample</button>
-    <div class="square" style="top: 0; left: 0"></div>
+    <div v-hammer:tap="tapTest" class="square" style="top: 700px; left: 500px"></div>
     <div class="square" style="top: 0; right: 0"></div>
     <div class="square" style="left: 0; bottom: 0"></div>
     <div class="square" style="right: 0; bottom: 0"></div>
@@ -28,10 +29,11 @@ export default {
     return {
       bgColor: 'red',
       isDragging: false,
+      worldSelected: false,
       lastPosX: 0,
       lastPosY: 0,
-      posX: -50,
-      posY: -50,
+      posX: 0,
+      posY: 0,
       width: 2100,
       height: 1200
     }
@@ -53,8 +55,13 @@ export default {
         this.posY = window.innerHeight - this.height
       }
     },
-    handlePress: function() {
-      this.endDrag()
+    tapTest: function() {
+      this.bgColor = 'green'
+    },
+    handlePress: function(e) {
+      if(e.target.id === 'world') {
+        //this.worldSelected = true
+      }
     },
     handleDrag: function(e) {
       if (!this.isDragging) {
@@ -85,12 +92,13 @@ export default {
         this.endDrag()
       }
     },
-    startDrag: function(e) {
+    startDrag: function() {
       this.isDragging = true
-      this.lastPosX = e.target.offsetLeft
-      this.lastPosY = e.target.offsetTop
+      this.lastPosX = this.posX
+      this.lastPosY = this.posY
     },
     endDrag: function() {
+      //this.worldSelected = false
       this.isDragging = false
     }
   }
@@ -100,8 +108,8 @@ export default {
 <style scoped>
   .square {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     background: blue;
   }
   .building-block {
@@ -110,5 +118,8 @@ export default {
     margin-bottom: 0.4em;
     background-color: blue;
     z-index: -1;
+  }
+  #world {
+
   }
 </style>
