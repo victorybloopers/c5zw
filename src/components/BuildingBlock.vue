@@ -11,7 +11,7 @@
                  top: posY + 'px',
                  width: width + 'px',
                  height: height + 'px'}">
-    {{ isDragging }}
+    {{ isDragging }} {{ mainWidth }} {{ mainHeight }}
     <div class="square" style="top: 0; left: 0"></div>
     <div class="square" style="top: 0; right: 0"></div>
     <div class="square" style="left: 0; bottom: 0"></div>
@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  props: ['mainWidth', 'mainHeight'],
   name: 'BuildingBlock',
   data () {
     return {
@@ -30,22 +31,35 @@ export default {
       lastPosY: 0,
       posX: -50,
       posY: -50,
-      width: 200,
-      height: 200
+      width: 2100,
+      height: 1200
     }
   },
   mounted () {
+    this.$nextTick(function() {
+      window.addEventListener('resize', this.findWidth)
+      window.addEventListener('resize', this.findHeight)
+    })
   },
   methods: {
+    findWidth: function() {
+      if ((this.width - (-this.posX)) < this.mainWidth) {
+        this.posX = -(this.width - this.mainWidth)
+      }
+    },
+    findHeight: function() {
+      if ((this.height - (-this.posY)) < this.mainHeight) {
+        this.posY = -(this.height - this.mainHeight)
+      }
+    },
     handlePress: function() {
       this.endDrag()
-      console.log('press down')
     },
     handleDrag: function(e) {
       if (!this.isDragging) {
         this.startDrag(e)
-        console.log('Dragging...')
       }
+      console.log(this.width - (-this.posX))
 
       this.posX = e.deltaX + this.lastPosX
       this.posY = e.deltaY + this.lastPosY
@@ -58,12 +72,12 @@ export default {
         this.posY = 0
       }
 
-      if (this.posX + this.width < 100) {
-        this.posX = -100
+      if (this.posX + this.width < this.mainWidth) {
+        this.posX = -(this.width - this.mainWidth)
       }
 
-      if (this.posY + this.height < 100) {
-        this.posY = -100
+      if (this.posY + this.height < this.mainHeight) {
+        this.posY = -(this.height - this.mainHeight)
       }
 
       if (e.isFinal) {
@@ -77,7 +91,6 @@ export default {
     },
     endDrag: function() {
       this.isDragging = false
-      console.log('press up')
     }
   }
 }
