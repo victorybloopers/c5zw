@@ -7,7 +7,8 @@
        ref="someBlock"
        id="world"
        :class="{ 'building-block': true }"
-       :style="{ backgroundColor: bgColor,
+       :style="{ backgroundImage: bgImgSrc,
+                 backgroundColor: bgColor,
                  left: posX + 'px',
                  top: posY + 'px',
                  width: width + 'px',
@@ -120,6 +121,6 @@ export default {
     z-index: -1;
   }
   #world {
-
+    background-image: url('../assets/grid.png')
   }
 </style>
