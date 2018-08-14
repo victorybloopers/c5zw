@@ -7,15 +7,16 @@
        ref="someBlock"
        id="world"
        :class="{ 'building-block': true }"
-       :style="{ backgroundImage: bgImgSrc,
-                 backgroundColor: bgColor,
-                 left: posX + 'px',
+       :style="{ left: posX + 'px',
                  top: posY + 'px',
                  width: width + 'px',
                  height: height + 'px'}">
-    {{ isDragging }} {{ mainWidth }} {{ mainHeight }}
-    <button>Sample</button>
-    <div v-hammer:tap="tapTest" class="square" style="top: 700px; left: 500px"></div>
+    <!--
+    <div v-hammer:tap="tapTest"
+         :style="{ backgroundColor: bgColor }"
+         class="square"
+         style="top: 700px; left: 500px"></div>-->
+    <GameTile />
     <div class="square" style="top: 0; right: 0"></div>
     <div class="square" style="left: 0; bottom: 0"></div>
     <div class="square" style="right: 0; bottom: 0"></div>
@@ -23,8 +24,13 @@
 </template>
 
 <script>
+import GameTile from './GameTile'
 export default {
+  name: 'GameBoard',
   props: ['mainWidth', 'mainHeight'],
+  components: {
+    GameTile
+  },
   name: 'BuildingBlock',
   data () {
     return {
@@ -121,6 +127,6 @@ export default {
     z-index: -1;
   }
   #world {
-    background-image: url('../assets/grid.png')
+    background: linear-gradient(to right bottom, #10d2ed, blue)
   }
 </style>

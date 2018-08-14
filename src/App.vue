@@ -1,16 +1,16 @@
 <template>
   <div :style="{ width: windowWidth + 'px', height: windowHeight + 'px' }" id="app">
-    <BuildingBlock :mainWidth="windowWidth" :mainHeight="windowHeight" />
+    <GameBoard :mainWidth="windowWidth" :mainHeight="windowHeight" />
   </div>
 </template>
 
 <script>
-import BuildingBlock from './components/BuildingBlock'
+import GameBoard from './components/GameBoard'
 
 export default {
   name: 'App',
   components: {
-    BuildingBlock
+    GameBoard
   },
   data () {
     return {
