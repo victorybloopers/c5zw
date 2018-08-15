@@ -1,5 +1,8 @@
 <template>
   <div :style="{ width: windowWidth + 'px', height: windowHeight + 'px' }" id="app">
+    <!-- <div class="line" v-for="line in 100"></div> -->
+    <div class="grid">
+    </div>
     <GameBoard :mainWidth="windowWidth" :mainHeight="windowHeight" />
   </div>
 </template>
@@ -53,21 +56,52 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" rel="stylesheet/scss">
+  $baseline: 1.5rem;
+
+  @import url('https://fonts.googleapis.com/css?family=Unica+One');
+
+  html {
+    font-size: 16px;
+  }
   body {
+  }
+  * {
     margin: 0;
     padding: 0;
   }
-#app {
-  margin: 0 auto;
-  position: absolute;
-  outline: 1px solid black;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  z-index: 1;
-  overflow: hidden;
-}
+  h1 {
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: $baseline * 2;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 1rem;
+    line-height: $baseline;
+    margin-bottom: $baseline;
+  }
+  .grid {
+    color: white;
+    width: $baseline * 34;
+    position: absolute;
+    top: 0;
+  }
+  .line {
+    width: 100%;
+    height: $baseline;
+    border-bottom: 1px solid grey;
+    box-sizing: border-box;
+  }
+  #app {
+    margin: 0 auto;
+    position: absolute;
+    outline: 1px solid black;
+    font-family: 'Unica One', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    z-index: 1;
+    overflow: hidden;
+  }
 </style>

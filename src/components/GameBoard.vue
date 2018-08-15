@@ -17,9 +17,6 @@
          class="square"
          style="top: 700px; left: 500px"></div>-->
     <GameTile />
-    <div class="square" style="top: 0; right: 0"></div>
-    <div class="square" style="left: 0; bottom: 0"></div>
-    <div class="square" style="right: 0; bottom: 0"></div>
   </div>
 </template>
 
@@ -127,6 +124,6 @@ export default {
     z-index: -1;
   }
   #world {
-    background: linear-gradient(to right bottom, #10d2ed, blue)
+    background: linear-gradient(to right bottom, #23d4d4, #0044ff)
   }
 </style>

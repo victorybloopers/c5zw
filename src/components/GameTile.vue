@@ -1,103 +1,115 @@
 <template>
-  <div id="game-tile">
-    <div v-hammer:tap="changeTowerHeight" class="perspective">
-      <div :style="{ height: towerHeight + 'px' }" class="surface front"></div>
-      <div :style="{ height: towerHeight + 'px' }" class="surface back"></div>
-      <div :style="{ width: towerHeight + 'px' }" class="surface left"></div>
-      <div :style="{ width: towerHeight + 'px' }" class="surface right"></div>
-      <div :style="{ transform: 'translateZ(' + towerHeight + 'px)' }" class="surface top"></div>
-      <div :style="{  }" class="surface bottom"></div>
+  <div id="grid">
+    <div class="perspective">
+      <SteamVent />
+      <div v-hammer:tap="changeTowerHeight" class="tower">
+        <div class="surface bottom"></div>
+        <div :style="{ height: towerHeight + 'rem' }" class="surface back"></div>
+        <div :style="{ width: towerHeight + 'rem' }" class="surface left"></div>
+        <div :style="{ width: towerHeight + 'rem' }" class="surface right"></div>
+        <div :style="{ transform: 'translateZ(' + towerHeight + 'rem)' }" class="surface top"></div>
+        <div :style="{ height: towerHeight + 'rem' }" class="surface front"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import SteamVent from './SteamVent'
   export default {
     name: "GameTile",
+    components: {
+      SteamVent
+    },
     data() {
       return {
-        towerHeight: 200
+        towerHeight: 4
       }
     },
     methods: {
       changeTowerHeight: function() {
-        this.towerHeight += 60
+        this.towerHeight += 4;
       }
     }
   }
 </script>
 
-<style scoped>
-  #game-tile {
-    position: absolute;
-    left: 400px;
-    top: 600px;
+<style lang="scss" rel="stylesheet/scss">
+  #grid {
   }
   .perspective {
+    position: absolute;
     transform-style: preserve-3d;
     transform: rotateX(45deg) rotateZ(45deg);
   }
   .surface {
     position: absolute;
-    opacity: 0.8;
     transition: 200ms;
+    box-sizing: border-box;
   }
+  .tower {
+    position: absolute;
+    top: 0rem;
+    left: 40rem;
+  }
+  /*
+  .front:hover {
+    animation: glow linear infinite 600ms;
+  }
+  @keyframes glow {
+    0% {
+      border-top: 3px solid rgba(255, 255, 255, 0);
+      border-left: 2px solid rgba(255, 255, 255, 0);
+    }
+    50% {
+      border-top: 3px solid rgba(255, 255, 255, 1);
+      border-left: 2px solid rgba(255, 255, 255, 1);
+    }
+    100% {
+      border-top: 3px solid rgba(255, 255, 255, 0);
+      border-left: 2px solid rgba(255, 255, 255, 0);
+    }
+  }
+  */
   .front {
-    background-color: deepskyblue;
-    width: 100px;
-    height: 150px; /* tower */
-    animation: spin linear infinite 5s;
+    background-color: #515656;
+    width: 4rem;
     transform-origin: top;
-    transform: rotateX(90deg) translateZ(-100px);
+    transform: rotateX(90deg) translateZ(-4rem);
   }
   .back {
-    background-color: aqua;
-    width: 100px;
-    height: 150px; /* tower */
+    background-color: #6e6f6f;
+    width: 4rem;
     transform-origin: top;
     transform: rotateX(90deg);
   }
   .left {
-    background-color: powderblue;
-    width: 150px; /* tower */
-    height: 100px;
+    background-color: #6e6f6f;
+    height: 4rem;
     transform-origin: left;
     animation: spin2 linear infinite 5s;
     transform: rotateY(-90deg);
   }
   .right {
-    background-color: khaki;
-    width: 150px; /* tower */
-    height: 100px;
+    background-color: #404040;
+    height: 4rem;
     transform-origin: left;
-    transform: rotateY(-90deg) translateZ(-100px);
+    transform: rotateY(-90deg) translateZ(-4rem);
   }
   .top {
-    background-color: mediumpurple;
-    width: 100px;
-    height: 100px;
-    transform: translateZ(150px); /* tower */
+    background-color: #6e6f6f;
+    width: 4rem;
+    height: 4rem;
   }
   .bottom {
-    width: 100px;
-    height: 100px;
-    background-color: teal;
+    background-color: #6e6f6f;
+    width: 4rem;
+    height: 4rem;
   }
   /*
-  @keyframes spin2 {
-    0% {
-      transform: rotateY(0deg);
-    }
-    100% {
-      transform: rotateY(360deg);
-    }
-  }
-  @keyframes spin {
-    0% {
-      transform: rotateX(0deg);
-    }
-    100% {
-      transform: rotateX(360deg);
-    }
-  }*/
+  .shadow {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 4rem;
+    height: 4rem;
+  } */
 </style>
