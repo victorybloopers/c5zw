@@ -65,14 +65,9 @@ export default {
     font-size: 16px;
   }
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #111111;
     padding: 0;
     margin: 0;
-    width: 100vw;
-    height: 100vh;
   }
   * {
     margin: 0;
