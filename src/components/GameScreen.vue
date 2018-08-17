@@ -4,31 +4,24 @@
        v-hammer:pan="handleDrag"
        v-hammer:panend="endDrag"
        v-hammer:pancancel="endDrag"
-       ref="someBlock"
        id="world"
        :class="{ 'building-block': true }"
        :style="{ left: posX + 'px',
                  top: posY + 'px',
                  width: width + 'px',
                  height: height + 'px'}">
-    <!--
-    <div v-hammer:tap="tapTest"
-         :style="{ backgroundColor: bgColor }"
-         class="square"
-         style="top: 700px; left: 500px"></div>-->
-    <GameTile />
+    <GameWorld />
   </div>
 </template>
 
 <script>
-import GameTile from './GameTile'
+import GameWorld from './GameWorld'
 export default {
-  name: 'GameBoard',
+  name: 'GameScreen',
   props: ['mainWidth', 'mainHeight'],
   components: {
-    GameTile
+    GameWorld,
   },
-  name: 'BuildingBlock',
   data () {
     return {
       bgColor: 'red',
@@ -122,8 +115,5 @@ export default {
     margin-bottom: 0.4em;
     background-color: blue;
     z-index: -1;
-  }
-  #world {
-    background: linear-gradient(to right bottom, #23d4d4, #0044ff)
   }
 </style>

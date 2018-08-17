@@ -3,17 +3,17 @@
     <!-- <div class="line" v-for="line in 100"></div> -->
     <div class="grid">
     </div>
-    <GameBoard :mainWidth="windowWidth" :mainHeight="windowHeight" />
+    <GameScreen :mainWidth="windowWidth" :mainHeight="windowHeight" />
   </div>
 </template>
 
 <script>
-import GameBoard from './components/GameBoard'
+import GameScreen from './components/GameScreen'
 
 export default {
   name: 'App',
   components: {
-    GameBoard
+    GameScreen
   },
   data () {
     return {
@@ -65,6 +65,14 @@ export default {
     font-size: 16px;
   }
   body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111111;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
   }
   * {
     margin: 0;
