@@ -5,6 +5,8 @@
       <GrowingTower />
       <Windmill />
       <MotherCore />
+      <PushyShroom />
+      <PumpyShroom />
     </div>
   </div>
 </template>
@@ -14,6 +16,8 @@
   import GrowingTower from './GrowingTower'
   import Windmill from './Windmill'
   import MotherCore from './MotherCore'
+  import PushyShroom from './PushyShroom'
+  import PumpyShroom from './PumpyShroom'
 
   export default {
     name: "GameWorld",
@@ -21,7 +25,9 @@
       SteamVent,
       GrowingTower,
       Windmill,
-      MotherCore
+      MotherCore,
+      PushyShroom,
+      PumpyShroom
     }
   }
 </script>
