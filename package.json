@@ -1,22 +1,29 @@
 {
   "name": "c5zw",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Michael Chase <victorybloopers@gmail.com>",
   "private": true,
   "scripts": {
+    "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "node server.js",
-    "build": "node build/build.js",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "serve:storybook": "vue-cli-service serve:storybook -p 6006 -c config/storybook",
+    "build:storybook": "vue-cli-service build:storybook -c config/storybook"
   },
   "dependencies": {
     "ajv": "^6.5.2",
     "express": "^4.16.3",
     "vue": "^2.5.2",
-    "vue2-hammer": "^2.0.0"
+    "vue2-hammer": "^2.0.0",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^4.0.0-alpha.16",
+    "@storybook/addon-links": "^4.0.0-alpha.16",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/vue": "^3.4.10",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -26,6 +33,7 @@
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
+    "babel-preset-vue": "^2.0.2",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
@@ -48,6 +56,7 @@
     "style-loader": "^0.22.1",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-cli-plugin-storybook": "^0.4.4",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
@@ -56,13 +65,15 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "description": "A Vue.js project",
+  "author": "Michael Chase <victorybloopers@gmail.com>",
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
 }
